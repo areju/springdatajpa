@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ class SpringdatajpaApplicationTests {
 	@Autowired
 	UserRepository userRepo;
 	
+	@BeforeAll
 	void beforeAll() {
 		userRepo.saveAll(generateUsers());
 	}
