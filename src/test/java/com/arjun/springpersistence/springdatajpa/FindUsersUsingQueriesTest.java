@@ -15,21 +15,21 @@ public class FindUsersUsingQueriesTest extends SpringdatajpaApplicationTests {
     @Test
     void testFindAll() {
         List<User> users = userRepo.findAll();
-        assertEquals(10, users.size());
+        assertEquals(12, users.size());
     }
  
     @Test
     void testFindUser() {
-        User beth = userRepo.findByUsername("beth");
-        assertEquals("abc1", beth.getUsername());
+        User abc1 = userRepo.findByUsername("abc1");
+        assertEquals("abc1", abc1.getUsername());
     }
  
     @Test
     void testFindAllByOrderByUsernameAsc() {
         List<User> users = userRepo.findAllByOrderByUsernameAsc();
-        assertAll(() -> assertEquals(10, users.size()),
-                () -> assertEquals("beth", users.get(0).getUsername()),
-                () -> assertEquals("stephanie", 
+        assertAll(() -> assertEquals(12, users.size()),
+                () -> assertEquals("abc1", users.get(0).getUsername()),
+                () -> assertEquals("qwerty", 
                        users.get(users.size() - 1).getUsername()));
     }
  
