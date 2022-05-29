@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.util.Streamable;
 
 import com.arjun.springpersistence.springdatajpa.model.User;
 
@@ -55,6 +56,13 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findFirst2ByLevel(int level, Sort sort);
     List<User> findByLevel(int level, Sort sort);
     List<User> findByActive(boolean active, Pageable pageable);
+    
+    /*
+     * streamables
+     */
+    
+    Streamable<User> findByEmailContaining(String text);
+    Streamable<User> findByLevel(int level);
 
 
 
