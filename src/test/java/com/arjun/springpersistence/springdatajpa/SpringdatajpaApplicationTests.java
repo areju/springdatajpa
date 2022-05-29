@@ -46,7 +46,7 @@ class SpringdatajpaApplicationTests {
 
         User abc3 = new User("abc3", LocalDate.of(2020, Month.MARCH, 13));
         abc3.setEmail("abc3@abcdomain.com");
-        abc3.setLevel(1);
+        abc3.setLevel(3);
         abc3.setActive(true);
         
         User abc4 = new User("abc4", LocalDate.of(2021, Month.APRIL, 5));
@@ -56,7 +56,7 @@ class SpringdatajpaApplicationTests {
 
         User abc5 = new User("abc5", LocalDate.of(2020, Month.MARCH, 13));
         abc5.setEmail("abc5@abcdomain.com");
-        abc5.setLevel(1);
+        abc5.setLevel(3);
         abc5.setActive(true);
 
 

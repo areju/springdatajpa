@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.arjun.springpersistence.springdatajpa.model.User;
@@ -40,6 +43,19 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findByRegistrationDateIn(Collection<LocalDate> dates);
 
     List<User> findByRegistrationDateNotIn(Collection<LocalDate> dates);
+    
+    /*
+     * Usage of first, top, pageable and sorting
+     * in queries
+     */
+    
+    User findFirstByOrderByUsernameAsc();
+    User findTopByOrderByRegistrationDateDesc();
+    Page<User> findAll(Pageable pageable);
+    List<User> findFirst2ByLevel(int level, Sort sort);
+    List<User> findByLevel(int level, Sort sort);
+    List<User> findByActive(boolean active, Pageable pageable);
+
 
 
 
