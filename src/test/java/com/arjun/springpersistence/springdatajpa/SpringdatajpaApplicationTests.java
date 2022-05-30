@@ -1,5 +1,8 @@
 package com.arjun.springpersistence.springdatajpa;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
@@ -12,14 +15,20 @@ import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.arjun.springpersistence.springdatajpa.helper.DateHelper;
+import com.arjun.springpersistence.springdatajpa.model.Item;
 import com.arjun.springpersistence.springdatajpa.model.User;
+import com.arjun.springpersistence.springdatajpa.model.repositories.ItemRepository;
 import com.arjun.springpersistence.springdatajpa.model.repositories.UserRepository;
+
 
 @SpringBootTest
 @TestInstance (TestInstance.Lifecycle.PER_CLASS)
 class SpringdatajpaApplicationTests {
 	@Autowired
 	UserRepository userRepo;
+	@Autowired
+	ItemRepository itemRepo;
 	
 	@BeforeAll
 	void beforeAll() {
@@ -31,7 +40,7 @@ class SpringdatajpaApplicationTests {
 		
 	}
 	
-    private static List<User> generateUsers() {
+    private List<User> generateUsers() {
         List<User> users = new ArrayList<>();
 
         User abc1 = new User("abc1", LocalDate.of(2020, Month.JANUARY, 13));
@@ -101,10 +110,30 @@ class SpringdatajpaApplicationTests {
 
         return users;
     }
+    /*
+    @Test
+    void storeLoadItem() {
+
+        Item item = new Item();
+        item.setName("Some Item");
+        item.setAuctionEnd(DateHelper.tomorrow());
+
+        itemRepo.save(item);
+
+        List<Item> items = (List<Item>) itemRepo.findAll();
+
+        assertAll(
+                () -> assertEquals(1, items.size()),
+                () -> assertEquals("Some Item", items.get(0).getName())
+        );
+
+    }*/
+
     
     @AfterAll
     void afterAll() {
         userRepo.deleteAll();
+        itemRepo.deleteAll();
     }
 
 
