@@ -3,7 +3,10 @@
  */
 package com.arjun.springpersistence.springdatajpa.model;
 
+import java.util.Collections;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,10 +14,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.GenericGenerator;
+
+
 
 /**
  * @author arjun
@@ -38,7 +44,9 @@ public class Item {
 	
 	private Date auctionend;
 	
-	
+    @Transient
+    private Set<Bid> bids = new HashSet<>();
+    
     public Long getId() { // Optional but useful
         return id;
     }
@@ -51,12 +59,20 @@ public class Item {
         this.name = name;
     }
 
-    public Date getAuctionEnd() {
+    public Date getAuctionend() {
         return auctionend;
     }
 
-    public void setAuctionEnd(Date auctionEnd) {
+    public void setAuctionend(Date auctionEnd) {
         this.auctionend = auctionEnd;
+    }
+    
+    public Set<Bid> getBids() {
+        return Collections.unmodifiableSet(bids);
+    }
+
+    public void addBid(Bid bid) {
+        bids.add(bid);
     }
 	
 
