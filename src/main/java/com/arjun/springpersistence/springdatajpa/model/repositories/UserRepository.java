@@ -24,7 +24,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     List<User> findAllByOrderByUsernameAsc();
 
-    List<User> findByRegistrationDateBetween(LocalDate start, LocalDate end);
+    List<User> findByRegistrationdateBetween(LocalDate start, LocalDate end);
 
     List<User> findByUsernameAndEmail(String username, String email);
 
@@ -46,9 +46,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     List<User> findByActive(boolean active);
 
-    List<User> findByRegistrationDateIn(Collection<LocalDate> dates);
+    List<User> findByRegistrationdateIn(Collection<LocalDate> dates);
 
-    List<User> findByRegistrationDateNotIn(Collection<LocalDate> dates);
+    List<User> findByRegistrationdateNotIn(Collection<LocalDate> dates);
     
     /*
      * Usage of first, top, pageable and sorting
@@ -56,7 +56,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
      */
     
     User findFirstByOrderByUsernameAsc();
-    User findTopByOrderByRegistrationDateDesc();
+    User findTopByOrderByRegistrationdateDesc();
     Page<User> findAll(Pageable pageable);
     List<User> findFirst2ByLevel(int level, Sort sort);
     List<User> findByLevel(int level, Sort sort);
@@ -92,7 +92,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
      * Projection interface based and class based, and also based on spel
      */
     
-    List<Projection.UserSummary> findByRegistrationDateAfter(LocalDate date);
+    List<Projection.UserSummary> findByRegistrationdateAfter(LocalDate date);
 
     List<Projection.UsernameOnly> findByEmail(String username);
 
