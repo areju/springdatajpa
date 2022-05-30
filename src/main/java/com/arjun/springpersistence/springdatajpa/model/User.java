@@ -15,7 +15,7 @@ public class User {
 	@GeneratedValue
 	private Long id;
 	private String username;
-	private LocalDate registrationDate;
+	private LocalDate registrationdate;
 	private String email;
 	private int level;
 	private boolean active;
@@ -30,7 +30,7 @@ public class User {
 
     public User(String username, LocalDate registrationDate) {
         this.username = username;
-        this.registrationDate = registrationDate;
+        this.registrationdate = registrationDate;
     }
 
 	
@@ -51,11 +51,11 @@ public class User {
 		this.username = userName;
 	}
 	
-	public LocalDate getRegistrationDate() {
-		return registrationDate;
+	public LocalDate getRegistrationdate() {
+		return registrationdate;
 	}
-	public void setRegistrationDate(LocalDate registrationDate) {
-		this.registrationDate = registrationDate;
+	public void setRegistrationdate(LocalDate registrationDate) {
+		this.registrationdate = registrationDate;
 	}
 	
 	public String getEmail() {
@@ -83,7 +83,7 @@ public class User {
 	
 	public String toString() {
 		StringBuilder builder = new StringBuilder("User").append("{").append("id=").append(id).append("email=")
-				.append(email).append("registrationDate=").append(registrationDate).append("}");
+				.append(email).append("registrationDate=").append(registrationdate).append("}");
 		return builder.toString();
 	}
 	
