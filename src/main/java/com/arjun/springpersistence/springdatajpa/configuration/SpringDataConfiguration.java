@@ -47,6 +47,7 @@ public class SpringDataConfiguration {
         localContainerEntityManagerFactoryBean.setDataSource(dataSource());
         Properties properties = new Properties();
         properties.put("hibernate.hbm2ddl.auto", "create-drop");
+        properties.put("hibernate.physical_naming_strategy", "com.arjun.springpersistence.springdatajpa.RJUNamingStrategy");
         localContainerEntityManagerFactoryBean.setJpaProperties(properties);
         localContainerEntityManagerFactoryBean.setJpaVendorAdapter(jpaVendorAdapter());
         localContainerEntityManagerFactoryBean.setPackagesToScan("com.arjun.springpersistence.springdatajpa");
