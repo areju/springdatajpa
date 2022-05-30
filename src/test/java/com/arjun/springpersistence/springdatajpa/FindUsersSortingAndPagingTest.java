@@ -17,8 +17,8 @@ public class FindUsersSortingAndPagingTest extends SpringdatajpaApplicationTests
 	@Test
 	void testOrder() {
 		User user1 = userRepo.findFirstByOrderByUsernameAsc();
-		User user2 = userRepo.findTopByOrderByRegistrationDateDesc();
-		List<User> users = userRepo.findFirst2ByLevel(2, Sort.by("RegistrationDate"));
+		User user2 = userRepo.findTopByOrderByRegistrationdateDesc();
+		List<User> users = userRepo.findFirst2ByLevel(2, Sort.by("Registrationdate"));
 		
 		Page<User> userPage = userRepo.findAll(PageRequest.of(1, 4));
 		
@@ -36,7 +36,7 @@ public class FindUsersSortingAndPagingTest extends SpringdatajpaApplicationTests
 	void testFindByLevel() {
 		
 		Sort.TypedSort<User> user = Sort.sort(User.class);
-		List<User> users = userRepo.findByLevel(3, user.by(User::getRegistrationDate).descending());
+		List<User> users = userRepo.findByLevel(3, user.by(User::getRegistrationdate).descending());
 		
         assertAll(                                                          
                 () -> assertEquals(2, users.size()),                        
@@ -50,7 +50,7 @@ public class FindUsersSortingAndPagingTest extends SpringdatajpaApplicationTests
     @Test
     void testFindByActive() {
         List<User> users = userRepo.findByActive(true,
-                   PageRequest.of(1, 4, Sort.by("registrationDate")));
+                   PageRequest.of(1, 4, Sort.by("registrationdate")));
         assertAll(                                                        
                 () -> assertEquals(4, users.size()),                       
                 () -> assertEquals("abc6", users.get(0).getUsername())     

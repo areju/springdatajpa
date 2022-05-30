@@ -35,7 +35,7 @@ public class FindUsersUsingQueriesTest extends SpringdatajpaApplicationTests {
  
     @Test
     void testFindByRegistrationDateBetween() {
-        List<User> users = userRepo.findByRegistrationDateBetween(
+        List<User> users = userRepo.findByRegistrationdateBetween(
                 LocalDate.of(2020, Month.JULY, 1),
                 LocalDate.of(2020, Month.DECEMBER, 31));
         assertEquals(4, users.size());

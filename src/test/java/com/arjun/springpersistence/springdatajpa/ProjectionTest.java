@@ -31,7 +31,7 @@ public class ProjectionTest extends SpringdatajpaApplicationTests {
     @Test
     void testProjectionUserSummary() {
         List<Projection.UserSummary> users =
-            userRepo.findByRegistrationDateAfter(LocalDate.of(2021, Month.FEBRUARY, 1));
+            userRepo.findByRegistrationdateAfter(LocalDate.of(2021, Month.FEBRUARY, 1));
  
         assertAll(
                 () -> assertEquals(1, users.size()),
