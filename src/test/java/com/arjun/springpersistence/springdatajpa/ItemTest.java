@@ -31,7 +31,7 @@ public class ItemTest {
 			
             Item item = new Item();
             item.setName("Some Item1");
-            item.setAuctionEnd(DateHelper.tomorrow());
+            item.setAuctionend(DateHelper.tomorrow());
             
             em.persist(item);
             em.getTransaction().commit();
