@@ -3,6 +3,7 @@ package com.arjun.springpersistence.springdatajpa.model;
 import java.math.BigDecimal;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -21,7 +22,7 @@ public class Bid {
 	@NonNull
 	private BigDecimal amount;
 	
-	@ManyToOne
+	@ManyToOne(optional = false, fetch = FetchType.LAZY)
 	@JoinColumn(name = "ITEM_ID")
 	private Item item;
 	
@@ -31,6 +32,7 @@ public class Bid {
     public Bid(BigDecimal amount, Item item) {
         this.amount = amount;
         this.item = item;
+        this.item.addBid(this);
     }
 
     public Bid(Item item) {

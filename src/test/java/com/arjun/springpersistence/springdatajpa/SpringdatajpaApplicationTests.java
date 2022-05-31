@@ -3,10 +3,12 @@ package com.arjun.springpersistence.springdatajpa;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -16,8 +18,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.arjun.springpersistence.springdatajpa.helper.DateHelper;
+import com.arjun.springpersistence.springdatajpa.model.Bid;
 import com.arjun.springpersistence.springdatajpa.model.Item;
+import com.arjun.springpersistence.springdatajpa.model.ItemBidSummary;
 import com.arjun.springpersistence.springdatajpa.model.User;
+import com.arjun.springpersistence.springdatajpa.model.repositories.BidRepository;
+import com.arjun.springpersistence.springdatajpa.model.repositories.ItemBidSummaryRepository;
 import com.arjun.springpersistence.springdatajpa.model.repositories.ItemRepository;
 import com.arjun.springpersistence.springdatajpa.model.repositories.UserRepository;
 
@@ -29,6 +35,10 @@ class SpringdatajpaApplicationTests {
 	UserRepository userRepo;
 	@Autowired
 	ItemRepository itemRepo;
+	@Autowired
+	BidRepository bidRepo;
+	@Autowired
+	ItemBidSummaryRepository itemBidSummaryRepository;
 	
 	@BeforeAll
 	void beforeAll() {
@@ -116,7 +126,7 @@ class SpringdatajpaApplicationTests {
 
         Item item = new Item();
         item.setName("Some Item");
-        item.setAuctionEnd(DateHelper.tomorrow());
+        item.setAuctionend(DateHelper.tomorrow());
 
         itemRepo.save(item);
 
@@ -128,12 +138,38 @@ class SpringdatajpaApplicationTests {
         );
 
     }*/
+    
+    /*
+    @Test
+    public void itemBidSummaryTest() {
+
+        Item item = new Item();
+        item.setName("Some Item");
+        item.setAuctionend(DateHelper.tomorrow());
+
+        Bid bid1 = new Bid(new BigDecimal(1000.0), item);
+        Bid bid2 = new Bid(new BigDecimal(1100.0), item);
+
+        itemRepo.save(item);
+        bidRepo.save(bid1);
+        bidRepo.save(bid2);
+
+        Optional<ItemBidSummary> itemBidSummary = itemBidSummaryRepository.findById(1000L);
+
+        assertAll(
+                () -> assertEquals(1000, itemBidSummary.get().getItemid()),
+                () -> assertEquals("Some Item", itemBidSummary.get().getName()),
+                () -> assertEquals(2, itemBidSummary.get().getNumberofbids())
+        );
+
+    }*/
 
     
     @AfterAll
     void afterAll() {
+    	
         userRepo.deleteAll();
-        itemRepo.deleteAll();
+        
     }
 
 

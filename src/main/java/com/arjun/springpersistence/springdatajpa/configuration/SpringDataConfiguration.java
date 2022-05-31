@@ -23,7 +23,7 @@ public class SpringDataConfiguration {
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/ARJU_SPRINGDATAJPA?serverTimezone=UTC");
         dataSource.setUsername("root");
-        dataSource.setPassword("");
+        dataSource.setPassword("@1100Nokia");
         return dataSource;
     }
     
@@ -46,12 +46,12 @@ public class SpringDataConfiguration {
                 new LocalContainerEntityManagerFactoryBean();
         localContainerEntityManagerFactoryBean.setDataSource(dataSource());
         Properties properties = new Properties();
-        properties.put("hibernate.hbm2ddl.auto", "create-drop");
-        properties.put("hibernate.physical_naming_strategy", "com.arjun.springpersistence.springdatajpa.RJUNamingStrategy");
+        properties.put("hibernate.hbm2ddl.auto", "create");
         localContainerEntityManagerFactoryBean.setJpaProperties(properties);
         localContainerEntityManagerFactoryBean.setJpaVendorAdapter(jpaVendorAdapter());
         localContainerEntityManagerFactoryBean.setPackagesToScan("com.arjun.springpersistence.springdatajpa");
         return localContainerEntityManagerFactoryBean;
     }
+//        properties.put("hibernate.physical_naming_strategy", "com.arjun.springpersistence.springdatajpa.RJUNamingStrategy");
 
 }

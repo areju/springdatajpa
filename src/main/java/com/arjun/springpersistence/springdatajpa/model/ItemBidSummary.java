@@ -9,31 +9,29 @@ import org.hibernate.annotations.Subselect;
 @Entity
 @Immutable
 @Subselect(
-		value = "select i.ID as ITEMID, i.NAME as NAME," +
-				"count(b.ID) as NUMBEROFBIDS" +
-				"from ITEM i left outer join BID b on i.ID = b.ID" +
-				"group by i.ID i.NAME"
+		value = "select i.ID as itemid, i.NAME as name,  count(b.ID) as numberofbids from ITEM i left outer join BID b on i.ID = b.ITEM_ID group by i.ID, i.NAME"
+
 			)
-@org.hibernate.annotations.Synchronize({"ITEM", "BID"})
+@org.hibernate.annotations.Synchronize({"ITEM", "BID"}) 
 public class ItemBidSummary {
 	
 	@Id
-    private Long itemId;
+    private Long itemid;
 
     private String name;
 
-    private long numberOfBids;
+    private long numberofbids;
 
-    public Long getItemId() {
-        return itemId;
+    public Long getItemid() {
+        return itemid;
     }
 
     public String getName() {
         return name;
     }
 
-    public long getNumberOfBids() {
-        return numberOfBids;
+    public long getNumberofbids() {
+        return numberofbids;
     }
 
 
