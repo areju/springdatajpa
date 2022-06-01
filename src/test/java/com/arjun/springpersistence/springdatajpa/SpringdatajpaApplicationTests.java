@@ -139,7 +139,7 @@ class SpringdatajpaApplicationTests {
 
     }*/
     
-    /*
+    
     @Test
     public void itemBidSummaryTest() {
 
@@ -150,19 +150,20 @@ class SpringdatajpaApplicationTests {
         Bid bid1 = new Bid(new BigDecimal(1000.0), item);
         Bid bid2 = new Bid(new BigDecimal(1100.0), item);
 
-        itemRepo.save(item);
+        Item t_item = itemRepo.save(item);
         bidRepo.save(bid1);
         bidRepo.save(bid2);
-
-        Optional<ItemBidSummary> itemBidSummary = itemBidSummaryRepository.findById(1000L);
+        Long t_id = t_item.getId();
+        Optional<ItemBidSummary> itemBidSummary = itemBidSummaryRepository.findById(t_id);
 
         assertAll(
-                () -> assertEquals(1000, itemBidSummary.get().getItemid()),
-                () -> assertEquals("Some Item", itemBidSummary.get().getName()),
-                () -> assertEquals(2, itemBidSummary.get().getNumberofbids())
+        		
+                () -> assertEquals(t_id, t_item.getId()),
+                () -> assertEquals(t_item.getName(), itemBidSummary.get().getName()),
+                () -> assertEquals(t_item.getBids().size(), itemBidSummary.get().getNumberofbids())
         );
 
-    }*/
+    }
 
     
     @AfterAll
