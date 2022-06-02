@@ -21,6 +21,7 @@ import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.ColumnTransformer;
 import org.hibernate.annotations.Formula;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -61,6 +62,12 @@ public class Item {
 			)
 	private BigDecimal avgbidamount;
 	
+	@Column(name = "IMPERIALWEIGHT")
+	@ColumnTransformer(
+			read = "IMPERIALWEIGHT / 2.20462",
+			write = "? * IMPERIALWEIGHT")
+	private Double metricweight;
+	
     @Transient
     private Set<Bid> bids = new HashSet<>();
     
@@ -83,8 +90,20 @@ public class Item {
     public void setDescription(String description) {
         this.description = description;
     }
+    
+    public String getShortDescription() {
+        return shortDescription;
+    }
 
-    public Date getAuctionend() {
+    public Double getMetricweight() {
+		return metricweight;
+	}
+
+	public void setMetricweight(Double metricweight) {
+		this.metricweight = metricweight;
+	}
+
+	public Date getAuctionend() {
         return auctionend;
     }
 
