@@ -8,6 +8,8 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,6 +36,7 @@ public class Item {
 	@GeneratedValue(generator = "ID_GENERATOR")
 	private Long id;
 	
+	@Access(AccessType.PROPERTY)
     @NotNull
     @Size(
             min = 2,
