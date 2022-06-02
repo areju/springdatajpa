@@ -3,6 +3,7 @@
  */
 package com.arjun.springpersistence.springdatajpa.model;
 
+import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
@@ -20,6 +21,7 @@ import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.Formula;
 import org.hibernate.annotations.GenericGenerator;
 
 
@@ -47,6 +49,18 @@ public class Item {
 	
 	private Date auctionend;
 	
+	private String description;
+	
+	@Formula(
+				"CONCAT(SUBSTR(DESCRIPTION, 1, 12), '...')" 
+			)
+	private String shortDescription;
+	
+	@Formula(
+			"(SELECT AVG(B.AMOUNT) FROM BID B WHERE  B.ITEM_ID = ID)"
+			)
+	private BigDecimal avgbidamount;
+	
     @Transient
     private Set<Bid> bids = new HashSet<>();
     
@@ -60,6 +74,14 @@ public class Item {
 
     public void setName(String name) {
         this.name = name;
+    }
+    
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Date getAuctionend() {
